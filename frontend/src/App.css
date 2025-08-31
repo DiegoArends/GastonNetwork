@@ -1,0 +1,190 @@
+/* Contenedor principal que permite scroll */
+.App {  
+  min-height: 100vh;
+  position: relative;
+}
+
+/* =================================
+   REDES SOCIALES
+   ================================= */
+
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: linear-gradient(45deg, #fff78a, #df9800);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+}
+
+.social-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.35));
+}
+
+.social-icon:hover { transform: translateY(-2px); transition: transform .2s ease; }
+
+
+
+/* =================================
+   FOOTER
+   ================================= */
+
+.footer {
+  background: rgb(0, 0, 0);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25rem 0;
+  color: white;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+
+}
+
+.footer a:hover {
+  opacity: 1;
+}
+
+.footer-right {
+  display: flex;
+  gap: 1rem;
+}
+/* Fondo que se mantiene fijo mientras haces scroll */
+.background-image {
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* CLAVE: Fondo fijo durante el scroll */
+  width: 100%;
+  min-height: 200vh; /* Altura mayor para permitir scroll */
+  position: relative;
+  
+  /* Overlay oscuro para mejor legibilidad */
+  background-blend-mode: overlay;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* =================================
+   ESTILOS GENERALES PARA SECCIONES
+   ================================= */
+
+.section {
+  min-height: 100vh;
+  padding: 6rem 0 4rem 0; /* Espacio para el header */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.section-title {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 8px 8px 16px rgb(0, 0, 0);
+}
+
+/* =================================
+   SECCIÓN HERO (INICIO)
+   ================================= */
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.title {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 5rem;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+  text-shadow: 8px 8px 16px rgb(0, 0, 0);
+ 
+}
+
+.description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #ffd900;
+  text-align: center;
+  max-width: 800px;
+  line-height: 1.6;
+  text-shadow: 8px 8px 16px rgb(0, 0, 0);
+  margin-bottom: 0.5rem;
+  font-family: 'Bungee', system-ui, sans-serif;
+
+}
+
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0 2rem 0;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .schedule-grid,
+  .games-grid,
+  .social-grid { grid-template-columns: repeat(3, 80px); }
+}
