@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import Header from './components/Header'
-import avatar from './assets/avatar.jpg'
+import avatar from './assets/avatar.png'
 import instagramIcon from './assets/instagram.png'
 import xIcon from './assets/gorjeo.png'
 import twitchIcon from './assets/twitch.png'
@@ -32,21 +31,31 @@ function App() {
   }, [twitchChannel])
   return (
     <div className="App">
-      {/* Header fijo */}
-      <Header />
       
       {/* Contenido con scroll */}
-      <div className="App">
-
+      <div className="general-container">
+        {/* Header fijo */}
+      {<header className="header">
+      <div className="container">
+        <div className="logo">
+        </div>
+        <nav className="nav">
+          <a href="#inicio" className="nav-link"> INICIO</a>
+          <a href="#stream" className="nav-link"> STREAM</a>
+          <a href="#redes" className="nav-link"> REDES</a>
+        </nav>  
+      </div>     
+      </header>
+}
 
                 {/* SECCIÓN 1: HERO/INICIO */}
         <section id="inicio" className="section hero-section">
           <div className="container">
             <div className="main-content">
               <img src={avatar} className="avatar" />
-              <h1 className="title">¡Bienvenido a GastonNetworks!</h1>
+              <h1 className="title">¡BIENVENIDO A <span className="highlight">GASTONNETWORKS</span>!</h1>
               <p className="description">
-                Tu canal gaming favorito. Únete a la aventura y vive la experiencia gaming más épica.
+                TU CANAL GAMING FAVORITO. ÚNETE A LA AVENTURA Y VIVE LA EXPERIENCIA GAMING MÁS ÉPICA.
               </p>
             </div>
           </div>
@@ -86,7 +95,7 @@ function App() {
         {/* SECCIÓN 3: REDES SOCIALES */}
         <section id="redes" className="section social-section">
           <div className="container">
-            <h2 className="section-title">Sígueme en redes</h2>
+            <h2 className="section-title">SÍGUEME EN REDES</h2>
             <div className="social-grid">
               <a className="social-icon twitch" href="https://www.twitch.tv/gastonnetworks" target="_blank" rel="noreferrer" aria-label="Twitch">
                 <img src={twitchIcon} alt="Twitch" />

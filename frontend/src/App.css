@@ -1,8 +1,65 @@
-
 /* Contenedor principal que permite scroll */
-.App {  
+.App {
   min-height: 100vh;
   position: relative;
+}
+
+/* =================================
+   ESTILOS DEL HEADER PRINCIPAL
+   ================================= */
+
+.header {
+  /* Posición fija para que siempre esté visible */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  /* Espacio entre links */
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link {
+  font-family: 'Tiny5', system-ui, sans-serif;
+  color: #f7ca39;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+
+  /* Estilos del botón */
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+
+  /* Transiciones suaves */
+  transition: all 0.3s ease;
+
+  /* Borde invisible que se mostrará en hover */
+  border: 2px solid transparent;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  /* Elevar ligeramente */
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-link:active {
+  transform: translateY(0);
+  /* Volver a posición normal al hacer click */
+}
+
+
+
+.general-container {
+  background-color: #16121254;
 }
 
 /* =================================
@@ -27,17 +84,20 @@
   text-decoration: none;
   background: linear-gradient(45deg, #fff78a, #df9800);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .25);
 }
 
 .social-icon img {
   width: 60%;
   height: 60%;
   object-fit: contain;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,.35));
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .35));
 }
 
-.social-icon:hover { transform: translateY(-2px); transition: transform .2s ease; }
+.social-icon:hover {
+  transform: translateY(-2px);
+  transition: transform .2s ease;
+}
 
 
 
@@ -53,6 +113,7 @@
   text-align: center;
   font-size: 0.8rem;
   font-weight: 400;
+  font-family: system-ui, sans-serif;
 }
 
 .footer-inner {
@@ -76,17 +137,20 @@
   display: flex;
   gap: 1rem;
 }
+
 /* Fondo que se mantiene fijo mientras haces scroll */
 .background-image {
   background-image: url('./assets/background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* CLAVE: Fondo fijo durante el scroll */
+  background-attachment: fixed;
+  /* CLAVE: Fondo fijo durante el scroll */
   width: 100%;
-  min-height: 200vh; /* Altura mayor para permitir scroll */
+  min-height: 200vh;
+  /* Altura mayor para permitir scroll */
   position: relative;
-  
+
   /* Overlay oscuro para mejor legibilidad */
   background-blend-mode: overlay;
 }
@@ -94,9 +158,10 @@
 .avatar {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
+  border-radius: 40%;
   object-fit: cover;
   z-index: 1;
+  background-color: #cf54df00;
 }
 
 /* =================================
@@ -105,7 +170,8 @@
 
 .section {
   min-height: 100vh;
-  padding: 6rem 0 4rem 0; /* Espacio para el header */
+  padding: 6rem 0 4rem 0;
+  /* Espacio para el header */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,13 +185,13 @@
 }
 
 .section-title {
-  font-family: 'Bungee', system-ui, sans-serif;
+  font-family: 'Tiny5';
   font-size: 5rem;
   font-weight: 600;
   color: rgb(255, 255, 255);
   text-align: center;
   margin-bottom: 3rem;
-  text-shadow: 8px 8px 16px rgb(0, 0, 0);
+  text-shadow: 8px 8px 16px rgb(0, 0, 0)
 }
 
 /* =================================
@@ -143,26 +209,36 @@
 }
 
 .title {
-  font-family: 'Bungee', system-ui, sans-serif;
+  font-family: 'tiny5', system-ui, sans-serif;
   font-size: 5rem;
   font-weight: 400;
   color: rgb(255, 255, 255);
   text-align: center;
   margin: 2rem 0 1rem 0;
-  text-shadow: 8px 8px 16px rgb(0, 0, 0);
- 
+  text-shadow: 10px 10px 16px rgb(3, 0, 0);
+  font-weight: bold;
+
 }
+
+.highlight {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #ffc917;
+  text-shadow: 0 0 10px #130641, 0 0 20px #000114;
+}
+
+
 
 .description {
   font-size: 1.2rem;
   font-weight: 400;
-  color: #ffd900;
+  color: rgb(255, 255, 255);
   text-align: center;
   max-width: 800px;
   line-height: 1.6;
   text-shadow: 8px 8px 16px rgb(0, 0, 0);
   margin-bottom: 0.5rem;
-  font-family: 'Bungee', system-ui, sans-serif;
+  font-family: 'Tiny5';
 
 }
 
@@ -171,23 +247,26 @@
   .section {
     padding: 4rem 0 2rem 0;
   }
-  
+
   .section-title {
-    font-size: 1.2rem;
+    font-size: 2rem;
+
   }
-  
+
   .title {
     font-size: 2rem;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .schedule-grid,
   .games-grid,
-  .social-grid { grid-template-columns: repeat(4,80px); }
+  .social-grid {
+    grid-template-columns: repeat(4, 80px);
+  }
 
   .stream-section {
     padding: 2rem 0 2rem 0;
@@ -196,10 +275,10 @@
   .twitch-container {
     width: 100%;
   }
-  
+
   .twitch-embed {
     width: 100%;
   }
 
-  
+
 }
