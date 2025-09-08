@@ -72,14 +72,23 @@ app.get('/api/twitch-latest', async (req, res) => {
 
     const token = await getAppAccessToken(clientId, clientSecret)
 
+    // Get user ID from login
+    const users = await fetchHelix('users', token, clientId, { login })
+    const userId = users.data?.[0]?.id
+    if (!userId) return res.status(404).json({ error: 'user_not_found' })
+
     // 1) Is the channel live?
-    const streams = await fetchHelix('streams', token, clientId, { user_login: login })
+    const streams = await fetchHelix('streams', token, clientId, { user_id: userId })
     const isLive = Array.isArray(streams.data) && streams.data.length > 0
 
     let vodId = null
     if (!isLive) {
       // 2) Get latest VOD
-      const videos = await fetchHelix('videos', token, clientId, { user_login: login, first: 1, type: 'archive' })
+      const videos = await fetchHelix('videos', token, clientId, {
+        user_id: userId,
+        first: 1,
+        type: 'archive',
+      })
       if (Array.isArray(videos.data) && videos.data.length > 0) {
         vodId = videos.data[0].id
       }
@@ -98,10 +107,9 @@ app.get('/api/twitch-latest', async (req, res) => {
   }
 })
 
+// Health check
 app.get('/api/health', (_req, res) => res.json({ ok: true }))
 
 app.listen(PORT, () => {
   console.log(`[backend] listening on http://localhost:${PORT}`)
 })
-
-

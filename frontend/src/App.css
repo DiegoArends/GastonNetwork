@@ -1,3 +1,4 @@
+
 /* Contenedor principal que permite scroll */
 .App {  
   min-height: 100vh;
@@ -172,11 +173,11 @@
   }
   
   .section-title {
-    font-size: 2.2rem;
+    font-size: 1.2rem;
   }
   
   .title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .hero-buttons {
@@ -186,5 +187,19 @@
   
   .schedule-grid,
   .games-grid,
-  .social-grid { grid-template-columns: repeat(3, 80px); }
+  .social-grid { grid-template-columns: repeat(4,80px); }
+
+  .stream-section {
+    padding: 2rem 0 2rem 0;
+  }
+
+  .twitch-container {
+    width: 100%;
+  }
+  
+  .twitch-embed {
+    width: 100%;
+  }
+
+  
 }

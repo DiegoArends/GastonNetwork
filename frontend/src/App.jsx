@@ -77,16 +77,7 @@ function App() {
                     allow="autoplay; fullscreen; picture-in-picture"
                     title="Twitch VOD"
                   ></iframe>
-                ) : (
-                  <iframe
-                    src={`https://player.twitch.tv/?video=${fallbackVodId}&${parentParams}&muted=true&autoplay=true`}
-                    height="640"
-                    width="100%"
-                    allowFullScreen
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    title="Twitch VOD"
-                  ></iframe>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
