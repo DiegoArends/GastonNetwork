@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import avatar from './assets/avatar.png'
 import instagramIcon from './assets/instagram.png'
 import xIcon from './assets/gorjeo.png'
@@ -7,19 +7,25 @@ import facebookIcon from './assets/facebook.png'
 import emailIcon from './assets/email.png'
 import './App.css'
 
-
 function App() {
   const twitchChannel = 'gastonnetworks'
   const [latest, setLatest] = useState({ isLive: false, vodId: null })
-  const parents = useMemo(() => ['localhost', '127.0.0.1', window.location.hostname].filter(Boolean), [])
-  const parentParams = useMemo(() => parents.map(p => `parent=${p}`).join('&'), [parents])
-  const fallbackVodId = '2352887539'
+
+  // Detectar entorno y configurar parent para Twitch
+  const parentParams = `parent=${window.location.hostname}`
+
+  // Detectar entorno y configurar URL base de la API
+  const isLocal = window.location.hostname.includes('localhost') || window.location.hostname === '127.0.0.1'
+  const API_BASE = isLocal ? '' : 'https://gastonnetworks.com'
+
   useEffect(() => {
     let mounted = true
     const controller = new AbortController()
     ;(async () => {
-      try { 
-        const res = await fetch(`/api/twitch-latest?login=${twitchChannel}` , { signal: controller.signal })
+      try {
+        const res = await fetch(`${API_BASE}/api/twitch-latest?login=${twitchChannel}`, {
+          signal: controller.signal,
+        })
         if (!res.ok) throw new Error('bad_response')
         const json = await res.json()
         if (mounted) setLatest(json)
@@ -27,36 +33,36 @@ function App() {
         // ignore for now
       }
     })()
-    return () => { mounted = false; controller.abort() }
-  }, [twitchChannel])
+    return () => {
+      mounted = false
+      controller.abort()
+    }
+  }, [API_BASE, twitchChannel])
+
   return (
     <div className="App">
-      
-      {/* Contenido con scroll */}
       <div className="general-container">
-
         {/* HEADER */}
+        <header className="header">
+          <div className="container">
+            <div className="logo"></div>
+            <nav className="nav">
+              <a href="#inicio" className="nav-link">INICIO</a>
+              <a href="#stream" className="nav-link">STREAM</a>
+              <a href="#redes" className="nav-link">REDES</a>
+              <a href="#contacts" className="nav-link">CONTACTO</a>
+            </nav>
+          </div>
+        </header>
 
-      {<header className="header">
-      <div className="container">
-        <div className="logo">
-        </div>
-        <nav className="nav">
-          <a href="#inicio" className="nav-link"> INICIO</a>
-          <a href="#stream" className="nav-link"> STREAM</a>
-          <a href="#redes" className="nav-link"> REDES</a>
-          <a href="#contacts" className="nav-link"> CONTACTO</a>
-        </nav>  
-      </div>     
-      </header>
-}
-
-                {/* SECCIÓN 1: HERO/INICIO */}
+        {/* HERO */}
         <section id="inicio" className="section hero-section">
           <div className="container">
             <div className="main-content">
-              <img src={avatar} className="avatar" />
-              <h1 className="title">¡BIENVENIDO A <span className="highlight">GASTONNETWORKS</span>!</h1>
+              <img src={avatar} className="avatar" alt="Avatar" />
+              <h1 className="title">
+                ¡BIENVENIDO A <span className="highlight">GASTONNETWORKS</span>!
+              </h1>
               <p className="description">
                 TU CANAL GAMING FAVORITO. ÚNETE A LA AVENTURA Y VIVE LA EXPERIENCIA GAMING MÁS ÉPICA.
               </p>
@@ -64,12 +70,10 @@ function App() {
           </div>
         </section>
 
-        {/* SECCIÓN 2: STREAM EN VIVO / ÚLTIMO VIDEO */}
-        
+        {/* STREAM */}
         <section id="stream" className="section stream-section">
-          <div className="container"> 
+          <div className="container">
             <div className="twitch-container">
-              {/* EMBED DE TWITCH (con fallback a VOD si no está en vivo) */}
               <div className="twitch-embed">
                 {latest.isLive ? (
                   <iframe
@@ -95,34 +99,33 @@ function App() {
           </div>
         </section>
 
-        {/* SECCIÓN 3: REDES SOCIALES */}
+        {/* REDES */}
         <section id="redes" className="section social-section">
           <div className="container">
             <h2 className="section-title">SÍGUEME EN REDES</h2>
             <div className="social-grid">
-              <a className="social-icon twitch" href="https://www.twitch.tv/gastonnetworks" target="_blank" rel="noreferrer" aria-label="Twitch">
+              <a className="social-icon twitch" href="https://www.twitch.tv/gastonnetworks" target="_blank" rel="noreferrer">
                 <img src={twitchIcon} alt="Twitch" />
               </a>
-              <a className="social-icon facebook" href="https://www.facebook.com/GastonNetworks" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <a className="social-icon facebook" href="https://www.facebook.com/GastonNetworks" target="_blank" rel="noreferrer">
                 <img src={facebookIcon} alt="Facebook" />
               </a>
-              <a className="social-icon instagram" href="https://www.instagram.com/gastonnetworks" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <a className="social-icon instagram" href="https://www.instagram.com/gastonnetworks" target="_blank" rel="noreferrer">
                 <img src={instagramIcon} alt="Instagram" />
               </a>
-              <a className="social-icon x" href="https://twitter.com/GastonNetworks" target="_blank" rel="noreferrer" aria-label="X">
+              <a className="social-icon x" href="https://twitter.com/GastonNetworks" target="_blank" rel="noreferrer">
                 <img src={xIcon} alt="X" />
               </a>
-
             </div>
           </div>
         </section>
 
-        {/* SECCIÓN 4: CONTACTO */}
+        {/* CONTACTO */}
         <section id="contacts" className="section contacts-section">
           <div className="container">
-          <h2 className="section-title">CONTACTO</h2>
-          <div className="contacts-grid">
-              <a className="social-icon email-icon" href="mailto: @gastonneworks.com" target="_blank" rel="noreferrer" aria-label="Email">
+            <h2 className="section-title">CONTACTO</h2>
+            <div className="contacts-grid">
+              <a className="social-icon email-icon" href="mailto:gastonnetworks@gmail.com" target="_blank" rel="noreferrer">
                 <img src={emailIcon} alt="Email" />
               </a>
             </div>

@@ -5,7 +5,12 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: ['https://gastonnetworks.com', 'http://localhost:5173'],
+  methods: ['GET'],
+  credentials: false
+}))
+
 app.use(express.json())
 
 const PORT = process.env.PORT || 3000
