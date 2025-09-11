@@ -4,7 +4,7 @@ import instagramIcon from './assets/instagram.png'
 import xIcon from './assets/gorjeo.png'
 import twitchIcon from './assets/twitch.png'
 import facebookIcon from './assets/facebook.png'
-
+import emailIcon from './assets/email.png'
 import './App.css'
 
 
@@ -34,7 +34,9 @@ function App() {
       
       {/* Contenido con scroll */}
       <div className="general-container">
-        {/* Header fijo */}
+
+        {/* HEADER */}
+
       {<header className="header">
       <div className="container">
         <div className="logo">
@@ -43,6 +45,7 @@ function App() {
           <a href="#inicio" className="nav-link"> INICIO</a>
           <a href="#stream" className="nav-link"> STREAM</a>
           <a href="#redes" className="nav-link"> REDES</a>
+          <a href="#contacts" className="nav-link"> CONTACTO</a>
         </nav>  
       </div>     
       </header>
@@ -110,6 +113,18 @@ function App() {
                 <img src={xIcon} alt="X" />
               </a>
 
+            </div>
+          </div>
+        </section>
+
+        {/* SECCIÓN 4: CONTACTO */}
+        <section id="contacts" className="section contacts-section">
+          <div className="container">
+          <h2 className="section-title">CONTACTO</h2>
+          <div className="contacts-grid">
+              <a className="social-icon email-icon" href="mailto: @gastonneworks.com" target="_blank" rel="noreferrer" aria-label="Email">
+                <img src={emailIcon} alt="Email" />
+              </a>
             </div>
           </div>
         </section>
