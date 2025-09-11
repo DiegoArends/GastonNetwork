@@ -115,6 +115,7 @@ app.get('/api/twitch-latest', async (req, res) => {
 // Health check
 app.get('/api/health', (_req, res) => res.json({ ok: true }))
 
-app.listen(PORT, () => {
-  console.log(`[backend] listening on http://localhost:${PORT}`)
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`[backend] listening on http://0.0.0.0:${PORT}`)
 })
+
