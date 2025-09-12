@@ -16,7 +16,7 @@ function App() {
 
   // Detectar entorno y configurar URL base de la API
   const isLocal = window.location.hostname.includes('localhost') || window.location.hostname === '127.0.0.1'
-  const API_BASE = isLocal ? '' : 'https://gastonnetworks.com'
+  const API_BASE = isLocal ? '' : 'http://72.60.124.164:3000'
 
   useEffect(() => {
     let mounted = true

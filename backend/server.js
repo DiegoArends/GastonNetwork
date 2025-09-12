@@ -6,7 +6,7 @@ dotenv.config()
 
 const app = express()
 app.use(cors({
-  origin: ['https://gastonnetworks.com', 'http://localhost:5173'],
+  origin: ['https://gastonnetworks.com', 'https://www.gastonnetworks.com', 'http://localhost:5173'],
   methods: ['GET'],
   credentials: false
 }))
@@ -115,6 +115,8 @@ app.get('/api/twitch-latest', async (req, res) => {
 // Health check
 app.get('/api/health', (_req, res) => res.json({ ok: true }))
 
-app.listen(PORT, () => {
-  console.log(`[backend] listening on http://localhost:${PORT}`)
+app.listen(3000, '0.0.0.0', () => {
+  console.log('Servidor escuchando en el puerto 3000')
 })
+
+
