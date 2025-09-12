@@ -1,8 +1,11 @@
+require('dotenv').config();
+
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 
-dotenv.config()
+console.log('CWD:', process.cwd());
+console.log('PORT desde .env:', process.env.PORT);
+console.log('TWITCH_CLIENT_ID desde .env:', process.env.TWITCH_CLIENT_ID ? '*****' : 'NO CONFIGURADO');
 
 const app = express()
 app.use(cors({
