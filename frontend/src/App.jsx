@@ -20,17 +20,17 @@ function App() {
                   window.location.hostname === ''
   
   // URL del backend en el VPS
-  const API_BASE = isLocal ? 'http://localhost:3000' : 'http://72.60.124.164:3000'
+  const API_BASE = isLocal ? 'http://localhost:3000' : `${window.location.origin}`
 
   useEffect(() => {
     let mounted = true
     const controller = new AbortController()
     
-    console.log('🔗 Conectando a API:', `${API_BASE}/api/twitch-latest?login=${twitchChannel}`)
+    console.log('🔗 Conectando a API:', `${API_BASE}/api/twitch-latest/${twitchChannel}`)
     
     ;(async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/twitch-latest?login=${twitchChannel}`, {
+        const res = await fetch(`${API_BASE}/api/twitch-latest/${twitchChannel}`, {
           signal: controller.signal,
         })
         if (!res.ok) {
