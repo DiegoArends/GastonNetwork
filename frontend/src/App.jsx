@@ -15,22 +15,35 @@ function App() {
   const parentParams = `parent=${window.location.hostname}`
 
   // Detectar entorno y configurar URL base de la API
-  const isLocal = window.location.hostname.includes('localhost') || window.location.hostname === '127.0.0.1'
-  const API_BASE = isLocal ? '' : 'http://72.60.124.164:3000'
+  const isLocal = window.location.hostname.includes('localhost') || 
+                  window.location.hostname === '127.0.0.1' ||
+                  window.location.hostname === ''
+  
+  // URL del backend en el VPS
+  const API_BASE = isLocal ? 'http://localhost:3000' : 'http://72.60.124.164:3000'
 
   useEffect(() => {
     let mounted = true
     const controller = new AbortController()
+    
+    console.log('🔗 Conectando a API:', `${API_BASE}/api/twitch-latest?login=${twitchChannel}`)
+    
     ;(async () => {
       try {
         const res = await fetch(`${API_BASE}/api/twitch-latest?login=${twitchChannel}`, {
           signal: controller.signal,
         })
-        if (!res.ok) throw new Error('bad_response')
+        if (!res.ok) {
+          console.error('❌ Error en API:', res.status, res.statusText)
+          throw new Error('bad_response')
+        }
         const json = await res.json()
+        console.log('✅ Datos recibidos:', json)
         if (mounted) setLatest(json)
-      } catch (_) {
-        // ignore for now
+      } catch (error) {
+        console.error('❌ Error al conectar con la API:', error.message)
+        // En caso de error, mantener el estado por defecto
+        if (mounted) setLatest({ isLive: false, vodId: null })
       }
     })()
     return () => {
