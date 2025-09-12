@@ -6,9 +6,15 @@ dotenv.config()
 
 const app = express()
 app.use(cors({
-  origin: ['https://gastonnetworks.com', 'https://www.gastonnetworks.com', 'http://localhost:5173'],
-  methods: ['GET'],
-  credentials: false
+  origin: [
+    'https://gastonnetworks.com', 
+    'https://www.gastonnetworks.com', 
+    'http://localhost:5173',
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: false,
+  allowedHeaders: ['Content-Type', 'Authorization']
 }))
 
 app.use(express.json())
@@ -118,5 +124,4 @@ app.get('/api/health', (_req, res) => res.json({ ok: true }))
 app.listen(3000, '0.0.0.0', () => {
   console.log('Servidor escuchando en el puerto 3000')
 })
-
 
