@@ -26,11 +26,11 @@ function App() {
     let mounted = true
     const controller = new AbortController()
     
-    console.log('🔗 Conectando a API:', `${API_BASE}/api/twitch-latest/${twitchChannel}`)
+    console.log('🔗 Conectando a API:', `${API_BASE}/api/twitch-latest?login=${twitchChannel}`)
     
     ;(async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/twitch-latest/${twitchChannel}`, {
+        const res = await fetch(`${API_BASE}/api/twitch-latest?login=${twitchChannel}`, {
           signal: controller.signal,
         })
         if (!res.ok) {
