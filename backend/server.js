@@ -69,7 +69,7 @@ async function fetchHelix(endpoint, token, clientId, params = {}) {
 
 // GET /api/twitch-latest?login=<channel>
 // Returns: { isLive: boolean, vodId: string | null }
-app.get('/twitch-latest', async (req, res) => {
+app.get('/api/twitch-latest', async (req, res) => {
   const login = String(req.query.login || '').trim().toLowerCase()
   if (!login) return res.status(400).json({ error: 'missing_login' })
 
